@@ -5,12 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import sc.teach.fragmentsspeciaux.R;
 
@@ -18,16 +17,12 @@ public class SimpleDialogFragment extends DialogFragment {
 
 
     private EditText mEditText;
+    private SimpleDialogListener listener;
+    private Button btn;
 
 
     public SimpleDialogFragment() {
-
-        // Empty constructor is required for DialogFragment
-
-        // Make sure not to add arguments to the constructor
-
-        // Use `newInstance` instead as shown below
-
+        // le fragment est créé par la méthode newInstance
     }
 
     public static SimpleDialogFragment newInstance(String title) {
@@ -59,17 +54,23 @@ public class SimpleDialogFragment extends DialogFragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        // Get field from view
+        listener = (SimpleDialogListener) getActivity();
 
         mEditText = (EditText) view.findViewById(R.id.txt_your_name);
+        btn = (Button) view.findViewById(R.id.ok);
 
-        // Fetch arguments from bundle and set title
+        // quand le button est cliqué, l'activité est appellé
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onOkClickDialog(mEditText.getText().toString());
+            }
+        });
 
         String title = getArguments().getString("title", "Enter Name");
 
         getDialog().setTitle(title);
-
-        // Show soft keyboard automatically and request focus to field
 
         mEditText.requestFocus();
 
@@ -78,5 +79,6 @@ public class SimpleDialogFragment extends DialogFragment {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
     }
+
 
 }

@@ -59,7 +59,7 @@ public class AlertDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if (dialog != null /*&& dialog.isShowing()*/) {
+                if (dialog != null ) {
 
                     dialog.dismiss();
 

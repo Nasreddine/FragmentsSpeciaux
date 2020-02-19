@@ -11,19 +11,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/frag_simple_btn"
-            android:layout_width="wrap_content"
+            android:id="@+id/frag_alert_btn"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Fragment Simple" />
+            android:text="Alert Diag"
+            android:layout_marginTop="5dp"
+            />
 
         <Button
-            android:id="@+id/frag_alert_btn"
-            android:layout_width="wrap_content"
+            android:id="@+id/frag_date_btn"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Date Diag" android:layout_marginTop="5dp"/>
+
+        <Button
+            android:id="@+id/frag_simple_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Fragment Simple"
+            android:layout_marginTop="5dp"/>
+
+
+        <Button
+            android:id="@+id/frag_progress_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Progress Diag"
+            android:layout_marginTop="5dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

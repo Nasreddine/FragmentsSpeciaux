@@ -1,28 +1,33 @@
 package sc.teach.fragmentsspeciaux;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 import sc.teach.fragmentsspeciaux.dialogs.AlertDialogFragment;
 import sc.teach.fragmentsspeciaux.dialogs.DatePickerFragment;
+
+import sc.teach.fragmentsspeciaux.dialogs.SimpleDialogListener;
 import sc.teach.fragmentsspeciaux.dialogs.SimpleDialogFragment;
 
 
-public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, SimpleDialogListener {
 
     Button frag_simple_btn;
     Button frag_alert_btn;
+    Button frag_date_btn;
+    Button frag_progress_btn;
 
 
     @Override
@@ -33,11 +38,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         frag_simple_btn = findViewById(R.id.frag_simple_btn);
         frag_alert_btn = findViewById(R.id.frag_alert_btn);
+        frag_date_btn = findViewById(R.id.frag_date_btn);
+        frag_progress_btn = findViewById(R.id.frag_progress_btn);
+
 
         frag_simple_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showEditDialog();
+                showSimpleDialog();
 
             }
         });
@@ -50,23 +58,29 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        ProgressDialog pd = new ProgressDialog(this);
 
-        pd.setTitle("Loading...");
+        frag_date_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(frag_date_btn);
 
-        pd.setMessage("Please wait.");
+            }
+        });
 
-        pd.setCancelable(false);
 
-        pd.show();
+        frag_progress_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProgressDialog();
 
-        pd.dismiss();
+            }
+        });
 
 
     }
 
 
-    private void showEditDialog() {
+    private void showSimpleDialog() {
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -97,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
 
-
     // handle the date selected
     //https://guides.codepath.com/android/using-dialogfragment#styling-custom-dialog
+    //https://guides.codepath.com/android/Design-Support-Library
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-        // store the values selected into a Calendar instance
+        // stocker les valeurs sélectionnées dans une instance de type Calendar
 
         final Calendar c = Calendar.getInstance();
 
@@ -113,5 +127,41 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
+        Toast.makeText(this, c.getTime().toString(), Toast.LENGTH_SHORT).show();
+
     }
+
+    public void showProgressDialog() {
+
+        final ProgressDialog pd = new ProgressDialog(this);
+
+        pd.setTitle("Loading...");
+
+        pd.setMessage("Please wait.");
+
+        pd.setCancelable(true);
+
+        pd.setCancelable(false);
+        pd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                pd.dismiss();//dismiss dialog
+            }
+        });
+
+        pd.show();
+    }
+
+
+    // Cette méthode est appellée dans l'activité quand le listener est déclanché
+    // Les données sont passées en paramétres
+
+
+    @Override
+    public void onOkClickDialog(String inputText) {
+
+        Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_SHORT).show();
+
+    }
+
 }
