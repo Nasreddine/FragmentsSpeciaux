@@ -28,15 +28,10 @@ public class SimpleDialogFragment extends DialogFragment {
     public static SimpleDialogFragment newInstance(String title) {
 
         SimpleDialogFragment frag = new SimpleDialogFragment();
-
         Bundle args = new Bundle();
-
         args.putString("title", title);
-
         frag.setArguments(args);
-
         return frag;
-
     }
 
 
@@ -59,7 +54,8 @@ public class SimpleDialogFragment extends DialogFragment {
         mEditText = (EditText) view.findViewById(R.id.txt_your_name);
         btn = (Button) view.findViewById(R.id.ok);
 
-        // quand le button est cliqué, l'activité est appellé
+        // quand le button est cliqué, l'activité est appellé,
+        // la valeur mEditText est passeé à l'activité en paramètre
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +64,7 @@ public class SimpleDialogFragment extends DialogFragment {
             }
         });
 
-        String title = getArguments().getString("title", "Enter Name");
+        String title = getArguments().getString("title", "Votre nom");
 
         getDialog().setTitle(title);
 

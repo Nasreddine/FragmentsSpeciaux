@@ -15,7 +15,7 @@ public class DatePickerFragment extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        // Use the current time as the default values for the picker
+        // Récupérer la date d'aujourd'hui afin d'initialiser DatePicker
 
         final Calendar c = Calendar.getInstance();
 
@@ -26,12 +26,12 @@ public class DatePickerFragment extends DialogFragment {
         int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-        // Activity needs to implement this interface
+        // L'activité appelant ce fragment doit implémenter l'interface OnDateSetListener
 
         DatePickerDialog.OnDateSetListener listener = (DatePickerDialog.OnDateSetListener) getActivity();
 
 
-        // Create a new instance of TimePickerDialog and return it
+        // Créer une instance de TimePickerDialog et la retourner
 
         return new DatePickerDialog(getActivity(), listener, year, month, day);
 
