@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void showSimpleDialog() {
 
         FragmentManager fm = getSupportFragmentManager();
-        SimpleDialogFragment simpleDialogFragment = SimpleDialogFragment.newInstance("Some Title");
+        SimpleDialogFragment simpleDialogFragment = SimpleDialogFragment.newInstance("Titre");
         simpleDialogFragment.show(fm, "fragment_simple_dialog");
 
     }
