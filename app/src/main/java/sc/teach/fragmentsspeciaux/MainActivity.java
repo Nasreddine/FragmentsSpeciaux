@@ -155,8 +155,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     // Cette méthode est appellée dans l'activité quand le listener est déclanché
     // Les données sont passées en paramétres
-
-
     @Override
     public void onOkClickDialog(String inputText) {
 

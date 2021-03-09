@@ -4,15 +4,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
 public class AlertDialogFragment extends DialogFragment {
 
     public AlertDialogFragment() {
-
         // Empty constructor required for DialogFragment
-
     }
 
 
@@ -47,9 +46,7 @@ public class AlertDialogFragment extends DialogFragment {
             @Override
 
             public void onClick(DialogInterface dialog, int which) {
-
-                // on success
-
+                Toast.makeText(getContext(), "Ok clicked", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -58,16 +55,8 @@ public class AlertDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                if (dialog != null ) {
-
-                    dialog.dismiss();
-
-                }
-
+                Toast.makeText(getContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
             }
-
-
         });
 
 
